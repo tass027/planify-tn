@@ -1,0 +1,127 @@
+/* =========================
+   Base & Reset
+========================= */
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { font-family:'Segoe UI', sans-serif; scroll-behavior:smooth; background:#FBE4D8; }
+
+/* =========================
+   Services Section
+========================= */
+.services { padding: 80px 20px; background: linear-gradient(180deg,#FBE4D8,#F6D4CD); }
+.services-head { text-align:center; max-width:900px; margin:0 auto 2.5rem; }
+.services h2 { font-size:2.4rem; margin-bottom:0.5rem; color:#190019; }
+.services-subtitle { color:#522B5B; opacity:0.9; }
+
+/* =========================
+   Cards
+========================= */
+.service-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.6rem; max-width:1150px; margin:0 auto 48px; }
+.card { background:rgba(255,255,255,0.55); backdrop-filter:blur(10px); border-radius:18px; padding:26px; text-align:center; position:relative; overflow:hidden; transition:transform 0.25s ease, box-shadow 0.25s ease; opacity:1; transform:translateY(0); }
+.card:hover { transform:translateY(-8px); box-shadow:0 16px 36px rgba(0,0,0,0.12); }
+.card.featured { background:linear-gradient(180deg,rgba(133,79,108,0.15),rgba(255,255,255,0.6)); border:1px solid rgba(133,79,108,0.25); }
+.badge { position:absolute; top:14px; left:14px; background:#854F6C; color:#FBE4D8; font-size:0.8rem; padding:6px 10px; border-radius:999px; }
+.icon-wrap { width:64px; height:64px; margin:0 auto 14px; display:grid; place-items:center; border-radius:50%; color:#fff; font-size:1.6rem; box-shadow:0 8px 16px rgba(0,0,0,0.12); }
+.icon-purple{background:linear-gradient(135deg,#662249,#44174E);}
+.icon-green{background:linear-gradient(135deg,#522B5B,#854F6C);}
+.icon-blue{background:linear-gradient(135deg,#E9BCB9,#A34054);}
+.card h3{color:#190019; font-size:1.25rem; margin:6px 0 8px;}
+.card p{color:#2b124c; opacity:0.9; margin-bottom:14px;}
+.card-more ul{list-style:none; padding:0; margin:0 0 12px;}
+.card-more li{padding:6px 0; font-size:0.95rem; color:#190019; opacity:0.9;}
+.btn-ghost{background:transparent; border:1.5px solid #854F6C; color:#854F6C; border-radius:12px; padding:10px 16px; font-weight:600; cursor:pointer; transition:all 0.2s ease;}
+.btn-ghost:hover{background:#854F6C; color:#FBE4D8; transform:translateY(-2px);}
+
+/* =========================
+   Plans entre amis
+========================= */
+.plans-friends {
+  max-width: 1000px;
+  margin: 0 auto 50px;
+  padding: 40px 20px;
+}
+
+.plans-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.plans-header h2 {
+  font-size: 2rem;
+  color: #190019;
+}
+.plans-header p {
+  color: #522B5B;
+  opacity: 0.9;
+}
+
+.plans-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.plans-form select,
+.plans-form input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #854F6C;
+}
+.plans-form button {
+  cursor: pointer;
+}
+
+.plans-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.room {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.room:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,0.12); }
+
+.room-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.room-type {
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.room-type[data-type="sortie"] { background: #E6F6F1; color:#176C57; }
+.room-type[data-type="cadeau"] { background: #FFF1D6; color:#A05A00; }
+.room-type[data-type="evenement"] { background: #EAF0FF; color:#294C9E; }
+
+.room-desc { margin: 8px 0 14px; opacity: 0.9; }
+
+.option { margin-bottom: 12px; }
+.option-info { display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 6px; }
+.vote-bar { background: #eee; border-radius: 8px; overflow: hidden; height: 12px; margin-bottom: 8px; }
+.vote-fill { height: 100%; background: linear-gradient(135deg,#854F6C,#522B5B); transition: width 0.4s ease; }
+.vote-btn { border: 1px solid #854F6C; background: transparent; color: #854F6C; border-radius: 8px; padding: 6px 12px; cursor: pointer; transition: all 0.25s ease; }
+.vote-btn:hover { background:#854F6C; color:#fff; }
+
+.share-panel {
+  background: #fff;
+  border: 1px solid #854F6C;
+  border-radius: 12px;
+  padding: 10px;
+  margin-top: 8px;
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn { from { opacity:0; transform: translateY(-10px); } to { opacity:1; transform: translateY(0); } }
+
+@media (max-width: 768px) {
+  .plans-form { flex-direction: column; align-items: stretch; }
+}

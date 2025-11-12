@@ -1,0 +1,72 @@
+<div class="sorties-page">
+
+  <!-- Filters Sidebar -->
+  <aside class="filters">
+    <h3>Filtres</h3>
+
+    <label>
+      Budget max (DT):
+      <input type="number" [(ngModel)]="filterBudget" placeholder="Ex: 50" />
+    </label>
+
+    <label>
+      Sexe:
+      <select [(ngModel)]="filterSex">
+        <option value="">Tous</option>
+        <option value="male">Homme</option>
+        <option value="female">Femme</option>
+        <option value="mixed">Mixte</option>
+        <option value="couple">Couple</option>
+      </select>
+    </label>
+
+    <label>
+      Nombre de personnes:
+      <input type="number" [(ngModel)]="filterPeople" placeholder="Ex: 2" />
+    </label>
+
+    <label>
+      Type de sortie:
+      <select [(ngModel)]="filterType">
+        <option value="">Tous</option>
+        <option value="adventure">Aventure</option>
+        <option value="romantic">Romantique</option>
+        <option value="classy">Classy</option>
+        <option value="basic">Basique</option>
+      </select>
+    </label>
+
+    <button class="reset-btn" (click)="resetFilters()">Réinitialiser</button>
+  </aside>
+
+  <!-- Sorties Results -->
+  <section class="results">
+    <div *ngIf="filteredSorties.length === 0" class="no-results">
+      Aucun résultat correspondant aux filtres.
+    </div>
+
+    <div class="sortie-card" *ngFor="let sortie of filteredSorties">
+      <img *ngIf="sortie.image" [src]="sortie.image" [alt]="sortie.title" />
+      <div class="sortie-info">
+        <h4>{{ sortie.title }}</h4>
+
+        <p>
+          {{ showMore[sortie.title] ? sortie.fullDescription : (sortie.fullDescription | slice:0:150) + '...' }}
+        </p>
+
+        <button class="show-more-btn" (click)="toggleShowMore(sortie.title)">
+          {{ showMore[sortie.title] ? 'Show less' : 'Show more' }}
+        </button>
+
+        <ul>
+          <li>Budget: {{ sortie.budget }} DT</li>
+          <li>Sexe: {{ sortie.sex }}</li>
+          <li>Personnes: {{ sortie.people }}</li>
+          <li>Type: {{ sortie.type }}</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+</div>

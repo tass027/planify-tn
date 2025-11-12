@@ -1,0 +1,24 @@
+<div class="panier-page">
+  <h1>Mon Panier</h1>
+
+  <div *ngIf="cart.length === 0" class="empty-cart">
+    <p>Votre panier est vide.</p>
+  </div>
+
+  <div *ngIf="cart.length > 0" class="cart-items">
+    <div class="cart-item" *ngFor="let gift of cart; let i = index">
+      <img [src]="gift.image" [alt]="gift.name">
+      <div class="info">
+        <h3>{{ gift.name }}</h3>
+        <p>{{ gift.category }}</p>
+        <p class="price">{{ gift.price }}</p>
+      </div>
+      <button (click)="removeItem(i)">Supprimer</button>
+    </div>
+
+    <div class="cart-total">
+      <h3>Total: {{ total }} DT</h3>
+      <button (click)="clearCart()">Vider le panier</button>
+    </div>
+  </div>
+</div>

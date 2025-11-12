@@ -1,0 +1,13 @@
+.panier-page { padding: 2rem; max-width: 900px; margin: auto; font-family: 'Segoe UI', sans-serif; }
+h1 { text-align: center; color: #854F6C; margin-bottom: 2rem; }
+.cart-items { display: flex; flex-direction: column; gap: 1rem; }
+.cart-item { display: flex; align-items: center; gap: 1rem; background: #fff; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+.cart-item img { width: 100px; height: 100px; object-fit: cover; border-radius: 10px; }
+.cart-item .info { flex-grow: 1; }
+.cart-item .price { font-weight: bold; color: #e63946; }
+.cart-item button { background: #190019; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; }
+.cart-item button:hover { background: #e63946; }
+.cart-total { text-align: right; margin-top: 1rem; }
+.cart-total button { background: #854F6C; padding: 0.5rem 1rem; border-radius: 6px; color: #fff; border: none; cursor: pointer; }
+.cart-total button:hover { background: #e63946; }
+.empty-cart { text-align: center; font-size: 1.2rem; color: #555; }

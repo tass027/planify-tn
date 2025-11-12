@@ -1,0 +1,63 @@
+<div class="contact-page">
+  <h1 class="fade-up">Contactez-nous</h1>
+  <p class="fade-up delay-1">Nous sommes là pour répondre à toutes vos questions et suggestions.</p>
+
+  <div class="contact-container">
+
+    <!-- Formulaire -->
+    <form (ngSubmit)="envoyerMessage()" class="contact-form fade-up delay-2">
+      <div class="form-group" *ngFor="let field of fields">
+        <input
+          [type]="field==='email'?'email':field==='telephone'?'tel':'text'"
+          [(ngModel)]="contact[field]"
+          [name]="field"
+          required
+          [id]="field">
+        <label [for]="field" [class.filled]="contact[field]">
+          {{field==='nom'?'Nom*':field==='email'?'Email*':field==='telephone'?'Téléphone':'Message*'}}
+        </label>
+      </div>
+      <button type="submit" class="btn-send">Envoyer</button>
+    </form>
+
+    <!-- Infos & Réseaux sociaux -->
+    <div class="contact-info fade-up delay-3">
+      <h2>Informations</h2>
+      <p><strong>Email:</strong> planifyTN&#64;gmail.com</p>
+      <p><strong>Téléphone:</strong> +216 12 345 678</p>
+      <p><strong>Adresse:</strong> 123 Rue Exemple, Tunis, Tunisie</p>
+
+      <h2>Suivez-nous</h2>
+      <div class="social-links">
+        <a href="#" target="_blank"><img src="assets/social/instagram.png" alt="Instagram"></a>
+        <a href="#" target="_blank"><img src="assets/social/facebook.png" alt="Facebook"></a>
+        <a href="#" target="_blank"><img src="assets/social/tiktok.png" alt="tiktok"></a>
+        <a href="#" target="_blank"><img src="assets/social/linkedin.png" alt="linkedin"></a>
+
+      </div>
+
+      <h2>Nos Partenaires</h2>
+      <div class="partners">
+        <div class="partner-card" *ngFor="let p of partenaires"
+             (mousemove)="tilt($event)"
+             (mouseleave)="resetTilt($event)">
+          <img [src]="p.logo" [alt]="p.nom">
+          <div class="partner-info">
+            <p><strong>{{p.nom}}</strong></p>
+            <p>{{p.type}}</p>
+            <a [href]="p.url" target="_blank">Voir</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Google Maps -->
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.050816931104!2d10.192082715220906!3d36.81897067993954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd3382c5e7c0b3%3A0x2b0e61e42f5550c7!2sTunis%2C%20Tunisie!5e0!3m2!1sfr!2s!4v1678888888888!5m2!1sfr!2s"
+          width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+
+    </div>
+
+  </div>
+</div>

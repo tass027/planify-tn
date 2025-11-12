@@ -1,0 +1,91 @@
+<div class="evenement-container">
+  <h2>Événements à venir</h2>
+
+  <!-- filtres -->
+  <div class="filters">
+    <label>
+      Tranche d'âge:
+      <select [(ngModel)]="filterAge">
+        <option value="">Tous</option>
+        <option value="Enfant">Enfant</option>
+        <option value="Adulte">Adulte</option>
+        <option value="Senior">Senior</option>
+      </select>
+    </label>
+    <label>
+      Type:
+      <select [(ngModel)]="filterType">
+        <option value="">Tous</option>
+        <option value="Couple">Couple</option>
+        <option value="Famille">Famille</option>
+        <option value="Friends">Friends</option>
+      </select>
+    </label>
+    <label>
+      Date:
+      <input type="date" [(ngModel)]="filterDate">
+    </label>
+  </div>
+
+  <!-- liste des événements filtrés -->
+  <div class="evenement-card" *ngFor="let evt of filteredEvenements"
+       (swipeleft)="nextImage(evt)" (swiperight)="prevImage(evt)">
+
+    <!-- carousel -->
+    <div class="carousel">
+      <img [src]="evt.images[evt.currentImage ?? 0]" alt="{{evt.titre}}">
+      <div class="thumbnails">
+        <img *ngFor="let img of evt.images; let i = index"
+             [src]="img"
+             [class.active]="i === evt.currentImage"
+             (click)="selectImage(evt, i)">
+      </div>
+    </div>
+
+    <div class="evenement-info">
+      <h3>{{ evt.titre }}</h3>
+      <p class="date-lieu">{{ evt.date | date:'fullDate' }} | {{ evt.lieu }}</p>
+      <p class="description">
+        {{ evt.showFullDesc ? evt.description : (evt.description | slice:0:120)+'...' }}
+        <button class="see-more" (click)="toggleDescription(evt)">
+          {{ evt.showFullDesc ? 'Voir moins' : 'Voir plus' }}
+        </button>
+      </p>
+      <div class="badges">
+        <span class="badge" *ngFor="let a of evt.age">{{ a }}</span>
+        <span class="badge type" *ngFor="let t of evt.type">{{ t }}</span>
+      </div>
+      <button (click)="openReservation(evt)" class="btn-book">Réserver</button>
+    </div>
+  </div>
+
+  <!-- formulaire modal flottant -->
+  <div class="modal-overlay" *ngIf="reservationEvent">
+    <div class="modal-content">
+      <h3>Réserver: {{ reservationEvent.titre }}</h3>
+      <form #resForm="ngForm" (ngSubmit)="confirmerReservation()">
+        <div class="form-grid">
+          <label>Nom:
+            <input type="text" [(ngModel)]="reservation.nom" name="nom" required autofocus>
+          </label>
+          <label>Email:
+            <input type="email" [(ngModel)]="reservation.email" name="email" required>
+          </label>
+          <label>Téléphone:
+            <input type="tel" [(ngModel)]="reservation.telephone" name="telephone" required>
+          </label>
+          <label>Adresse:
+            <input type="text" [(ngModel)]="reservation.adresse" name="adresse" required>
+          </label>
+          <label>Nombre de participants:
+            <input type="number" [(ngModel)]="reservation.participants" name="participants" min="1" required>
+          </label>
+        </div>
+        <div class="form-buttons">
+          <button type="submit" class="btn-confirm" [disabled]="resForm.invalid">Confirmer</button>
+          <button type="button" class="btn-cancel" (click)="reservationEvent = null">Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

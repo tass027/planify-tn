@@ -1,0 +1,61 @@
+<div class="d-flex flex-column min-vh-100">
+
+
+  <!-- Router Outlet -->
+  <router-outlet></router-outlet>
+
+  <!-- Hero Section -->
+  <main class="flex-grow-1">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <h1 id="hero-title">Bienvenue sur Planify.tn</h1>
+        <p>Votre assistant intelligent pour organiser vos sorties, cadeaux et évènements selon vos préférences !</p>
+        <button class="cta-btn">Commencez à planifier</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="about-container">
+      <div class="about-image">
+        <img src="assets/about.png" alt="Planifiez vos sorties">
+      </div>
+      <div class="about-text">
+        <h2>À propos de Planify.tn</h2>
+        <p>Planify.tn vous aide à organiser vos sorties, cadeaux et événements selon votre budget et vos envies. Découvrez facilement des activités et surprenez vos amis avec des moments mémorables !</p>
+        <button class="cta-btn">Commencez à planifier</button>
+      </div>
+    </div>
+  </section>
+  <section class="testimonials reveal">
+    <h2>Ils nous font confiance</h2>
+
+    <div class="testimonial-carousel">
+      <div class="testimonial-card" *ngFor="let f of feedbacks">
+        <img *ngIf="f.avatar; else defaultAvatar" [src]="f.avatar" alt="{{f.name}}'s photo" class="avatar">
+        <ng-template #defaultAvatar>
+          <div class="avatar placeholder">👤</div>
+        </ng-template>
+        <h3>{{f.name}}</h3>
+        <p>{{f.emoji}} {{f.comment}}</p>
+      </div>
+    </div>
+
+    <div *ngIf="userLoggedIn" class="feedback-form">
+      <h3>Laissez votre avis</h3>
+      <div class="emoji-select">
+        <button [class.active]="selectedEmoji==='😃'" (click)="selectedEmoji='😃'">😃</button>
+        <button [class.active]="selectedEmoji==='🙂'" (click)="selectedEmoji='🙂'">🙂</button>
+        <button [class.active]="selectedEmoji==='😐'" (click)="selectedEmoji='😐'">😐</button>
+        <button [class.active]="selectedEmoji==='😞'" (click)="selectedEmoji='😞'">😞</button>
+      </div>
+      <textarea id="userComment" placeholder="Écrivez votre avis ici..." [(ngModel)]="userComment"></textarea>
+      <button class="cta-btn" (click)="submitFeedback()">Envoyer {{selectedEmoji}}</button>
+    </div>
+  </section>
+
+
+
+
+</div>

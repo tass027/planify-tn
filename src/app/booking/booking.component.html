@@ -1,0 +1,36 @@
+<h2>Mes Réservations</h2>
+
+<div class="calendar-container">
+  <h3>Calendrier des réservations</h3>
+  <table class="calendar">
+    <thead>
+    <tr>
+      <th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Sam</th><th>Dim</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let week of calendar">
+      <td *ngFor="let day of week">
+        <div class="day-number">{{ day.date }}</div>
+        <div class="events">
+          <div *ngFor="let r of day.events" class="event-card">
+            {{ r.titre }} ({{ r.participants }})
+          </div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>Liste des réservations</h3>
+
+<div *ngIf="reservations.length === 0">Aucune réservation pour le moment.</div>
+
+<div *ngFor="let r of reservations; let i = index" class="booking-card">
+  <strong>{{ r.titre }}</strong> - {{ r.date }} - Participants: {{ r.participants }} - Statut: {{ r.statut }}
+  <br>Nom: {{ r.nom }} - Email: {{ r.email }}
+  <button (click)="pay(i)" [disabled]="r.statut==='Payé'">Payer</button>
+  <button (click)="cancel(i)" [disabled]="r.statut==='Annulé'">Annuler</button>
+  <button (click)="remove(i)">Supprimer</button>
+</div>

@@ -1,0 +1,77 @@
+<div class="cadeaux-page">
+  <h1>Cadeaux Planify</h1>
+  <p class="subtitle">Choisissez selon le sexe, l'occasion et les intérêts pour trouver le cadeau idéal</p>
+
+  <div class="filters">
+    <label>
+      Sexe :
+      <select [(ngModel)]="selectedSexe">
+        <option value="">Tous</option>
+        <option value="femme">Femme</option>
+        <option value="homme">Homme</option>
+      </select>
+    </label>
+
+    <label>
+      Occasion :
+      <select [(ngModel)]="selectedOccasion">
+        <option value="">Toutes</option>
+        <option value="anniversaire">Anniversaire</option>
+        <option value="valentin">Saint-Valentin</option>
+        <option value="amour">Amour</option>
+      </select>
+    </label>
+
+    <label>
+      Intérêt :
+      <select [(ngModel)]="selectedInteret">
+        <option value="">Tous</option>
+        <option value="mode">Mode</option>
+        <option value="maquillage">Maquillage</option>
+        <option value="skincare">Soins</option>
+        <option value="parfum">Parfum</option>
+        <option value="chocolat">Chocolat</option>
+        <option value="fleurs">Fleurs</option>
+        <option value="pack">Pack</option>
+      </select>
+    </label>
+    <label>
+      Budget max :
+      <select [(ngModel)]="selectedBudget">
+        <option value="">Tous</option>
+        <option value="50">50 DT</option>
+        <option value="100">100 DT</option>
+        <option value="150">150 DT</option>
+        <option value="200">200 DT</option>
+        <option value="300">300 DT</option>
+        <option value="500">500 DT</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="results" *ngIf="filteredGifts.length > 0">
+    <div class="gift-grid">
+      <div class="gift-card" *ngFor="let gift of filteredGifts">
+        <img [src]="gift.image" [alt]="gift.name" src="" alt="">
+        <h3>{{ gift.name }}</h3>
+        <p class="category">{{ gift.category }}</p>
+        <p class="price">{{ gift.price }}</p>
+        <button (click)="openModal(gift)">Voir Détails</button>
+      </div>
+    </div>
+  </div>
+  <p *ngIf="filteredGifts.length === 0" class="no-results">Aucun cadeau correspondant aux critères.</p>
+
+  <!-- Modal -->
+  <div class="modal" *ngIf="modalOpen">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <img [src]="selectedGift?.image" [alt]="selectedGift?.name" src="" alt="">
+      <h2>{{ selectedGift?.name }}</h2>
+      <p class="category">{{ selectedGift?.category }}</p>
+      <p class="price">{{ selectedGift?.price }}</p>
+      <p class="description">{{ selectedGift?.description }}</p>
+      <button (click)="addToCart(selectedGift!)">Ajouter au panier</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,130 @@
+<section class="services" aria-labelledby="services-title">
+
+  <!-- ====== Header ====== -->
+  <div class="services-head">
+    <h2 id="services-title">Nos Services</h2>
+    <p class="services-subtitle">
+      Planifiez mieux, vivez plus — des idées adaptées à votre budget et à l’occasion parfaite.
+    </p>
+  </div>
+
+  <!-- ====== Cards ====== -->
+  <div class="service-cards">
+    <!-- Card 1: Cadeaux -->
+    <article class="card featured">
+      <span class="badge">⭐ Recommandé</span>
+      <div class="icon-wrap icon-purple" aria-hidden="true"><i class="fas fa-gift"></i></div>
+      <h3>Cadeaux personnalisés</h3>
+      <p>Des idées sur-mesure selon la personne, l’occasion et votre budget.</p>
+      <div class="card-more">
+        <ul>
+          <li>Guides par profil (ami, couple, famille)</li>
+          <li>Filtres budget & délais</li>
+          <li>Listes partagées avec vos proches</li>
+        </ul>
+        <button class="btn-ghost" routerLink="/cadeaux">Explorer</button>
+      </div>
+    </article>
+
+    <!-- Card 2: Sorties -->
+    <article class="card">
+      <div class="icon-wrap icon-green" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></div>
+      <h3>Sorties locales</h3>
+      <p>Découvrez des spots proches de chez vous, testés et approuvés.</p>
+      <div class="card-more">
+        <ul>
+          <li>Itinéraires & temps réel</li>
+          <li>Filtres : chill, food, nature</li>
+          <li>Idées à partager en 1 clic</li>
+        </ul>
+        <button class="btn-ghost" routerLink="/sorties">Voir les idées</button>
+      </div>
+    </article>
+
+    <!-- Card 3: Évènements -->
+    <article class="card">
+      <div class="icon-wrap icon-blue" aria-hidden="true"><i class="fas fa-calendar-alt"></i></div>
+      <h3>Évènements</h3>
+      <p>Ne ratez plus les événements tendances autour de vous.</p>
+      <div class="card-more">
+        <ul>
+          <li>Agenda intelligent</li>
+          <li>Alertes selon vos goûts</li>
+          <li>Réservation simplifiée</li>
+        </ul>
+        <button class="btn-ghost" routerLink="/evenements">Découvrir</button>
+      </div>
+    </article>
+  </div>
+
+  <!-- ====== Plans entre amis ====== -->
+  <section class="plans-friends">
+    <div class="plans-header">
+      <h2>Rooms entre amis</h2>
+      <p>Crée une room (Sortie / Cadeau / Évènement), propose des idées et votez ensemble.</p>
+    </div>
+
+    <!-- Formulaire de création -->
+    <form (submit)="createRoom(); $event.preventDefault()" class="plans-form">
+      <select [(ngModel)]="newRoom.type" name="type">
+        <option value="sortie">Room Sortie</option>
+        <option value="cadeau">Room Cadeau</option>
+        <option value="evenement">Room Évènement</option>
+      </select>
+      <input type="text" placeholder="Nom de la room" [(ngModel)]="newRoom.name" name="name" required>
+      <input type="text" placeholder="Description" [(ngModel)]="newRoom.description" name="description">
+      <input type="number" placeholder="Budget (DT)" [(ngModel)]="newRoom.budget" name="budget" min="0">
+      <input type="text" placeholder="Propositions (séparées par ,)" [(ngModel)]="newRoom.optionsText" name="optionsText" required>
+      <button type="submit" class="btn-ghost">Créer la Room</button>
+    </form>
+
+    <!-- Liste des rooms -->
+    <div class="plans-list" *ngIf="(focusedRoom ? [focusedRoom] : rooms).length > 0">
+      <div class="room" *ngFor="let room of (focusedRoom ? [focusedRoom] : rooms); trackBy: trackByRoom">
+        <div class="room-head">
+          <div class="room-title">
+            <span class="room-type" [attr.data-type]="room.type">{{ room.type }}</span>
+            <h3>{{ room.name }}</h3>
+          </div>
+          <div class="room-meta">
+            <small *ngIf="room.budget && room.budget > 0">Budget : {{room.budget}} DT</small>
+            <small>Total votes : {{room.totalVotes}}</small>
+          </div>
+        </div>
+        <p class="room-desc" *ngIf="room.description">{{ room.description }}</p>
+
+        <!-- Options -->
+        <div class="option" *ngFor="let opt of room.options; trackBy: trackByOption">
+          <div class="option-info">
+            <span>{{ opt.name }}</span>
+            <span>{{ opt.votes }} votes ({{ percent(room, opt) }}%)</span>
+          </div>
+          <div class="vote-bar">
+            <div class="vote-fill" [style.width.%]="percent(room, opt)"></div>
+          </div>
+          <button class="vote-btn" (click)="vote(room, opt)">👍 Voter / Changer</button>
+        </div>
+
+        <!-- Partage -->
+        <div class="share">
+          <button class="btn-ghost sm" (click)="toggleShare(room)">🔗 Partager</button>
+          <div class="share-panel" *ngIf="showShareForId === room.id">
+            <div class="share-row">
+              <input class="share-link" [value]="roomShareLink(room)" readonly (click)="$any($event.target).select()">
+              <button class="copy-btn" (click)="copyLink(room)">{{ lastCopyOk ? 'Copié ✔' : 'Copier' }}</button>
+              <button class="copy-btn" (click)="webShare(room)">Partager…</button>
+              <a class="copy-btn" [href]="whatsappHref(room)" target="_blank" rel="noopener">WhatsApp</a>
+              <button class="copy-btn" (click)="toggleQr(room)">QR</button>
+            </div>
+            <div class="qr-wrap" *ngIf="qrVisibleForId === room.id">
+              <img [src]="qrSrc(room)" alt="QR code de la room" width="180" height="180">
+              <small>Scanne pour rejoindre & voter</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</section>

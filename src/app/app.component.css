@@ -1,0 +1,175 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #FBE4D8;
+  color: #190019;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+.d-flex { display: flex; flex-direction: column; min-height: 100vh; }
+.flex-grow-1 { flex-grow: 1; }
+
+/* =========================
+   Header
+========================= */
+.header {
+  background-color: #190019;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.header .logo img { height: 55px; width: auto; }
+.header .logo span {
+  color: #FBE4D8;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+}
+
+/* =========================
+   Navigation
+========================= */
+.menu-toggle {
+  background: none; border: none; cursor: pointer; display: none;
+}
+.menu-toggle img { width: 28px; height: 28px; filter: invert(1); transition: transform 0.25s ease;}
+.menu-toggle:hover img { transform: rotate(90deg); }
+
+.nav-menu {
+  list-style: none; display: flex; gap: 2rem; align-items: center;
+}
+.nav-menu > li { position: relative; }
+.nav-menu a {
+  color: #FBE4D8; text-decoration: none; font-weight: 600;
+  padding: 8px 12px; border-radius: 12px;
+  transition: background-color 0.25s ease, transform 0.12s ease;
+}
+.nav-menu a:hover, .nav-menu a:focus {
+  background-color: #522B5B; transform: translateY(-2px);
+}
+
+/* Submenu */
+.submenu2 {
+  position: absolute; top: 110%; left: 0; min-width: 200px;
+  background-color: #854F6C;
+  border-radius: 12px; padding: 6px 0;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition: all 0.25s ease;
+}
+.nav-menu > li:hover > .submenu2 {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+.submenu2 li a {
+  display: block; padding: 10px 16px; color: #FBE4D8;
+}
+.submenu2 li a:hover { background-color: #522B5B; }
+
+/* =========================
+   Footer
+========================= */
+.footer {
+  background: linear-gradient(180deg, #2B124C 0%, #190019 100%);
+  color: #DFB6B2;
+   text-align: center ;
+
+
+}
+.footer .socials a {
+  margin: 0 10px; font-size: 1.4rem; color: #FBE4D8;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+.footer .socials a:hover { color: #854F6C; transform: scale(1.1); }
+
+/* =========================
+   Buttons (Global)
+========================= */
+
+/* Bouton login */
+.login-btn {
+  padding: 9px 10px;
+  background-color: #522B5B;
+  color: #FBE4D8;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+.login-btn:hover, .login-btn:focus {
+  background-color: #854F6C;
+  box-shadow: 0 10px 22px rgba(43, 18, 76, 0.45);
+  transform: translateY(-2px);
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* espace entre login et panier */
+}
+
+
+/* Responsive Nav */
+@media (max-width: 768px) {
+  .header .container { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .menu-toggle { display: block; position: absolute; right: 1rem; top: 1.2rem; }
+  .nav-menu { flex-direction: column; width: 100%; display: none; gap: 0.5rem; }
+  .nav-menu.active { display: flex; }
+  .nav-actions { width: 100%; text-align: center; }
+  .login-btn { width: 100%; }
+
+}
+.cart-btn {
+  position: relative;
+  display: inline-block;
+  margin-right: 1rem;
+  text-decoration: none;
+}
+
+.cart-btn .cart-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.cart-btn .cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #e63946;
+  color: white;
+  border-radius: 50%;
+  padding: 0 6px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.booking-btn {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.booking-btn .booking-icon {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.25s ease;
+}
+
+.booking-btn:hover .booking-icon {
+  transform: scale(1.1);
+}
+
+
