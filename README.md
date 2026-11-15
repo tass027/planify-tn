@@ -13,7 +13,7 @@
 
 *Find fun, fit your life.*
 
-[Overview](#overview) · [Personalization](#personalization) · [My role](#my-role) · [Challenges](#challenges-and-lessons) · [Getting started](#getting-started) · [Author](#author)
+[Overview](#overview) · [Personalization](#personalization) · [Demo](#demo) · [My role](#my-role) · [Challenges](#challenges-and-lessons) · [Getting started](#getting-started) · [Author](#author)
 
 </div>
 
@@ -57,6 +57,18 @@ Recommendations are driven by three filters.
 | Location | Suggest outings and gifts based on where the user is |
 | Preferences | Match suggestions with the user's personal tastes |
 
+## Demo
+
+<div align="center">
+
+<a href="docs/demo.mp4"><img src="assets/demo.svg" alt="Watch the Planify.tn demo video" width="100%"></a>
+
+</div>
+
+<!-- TO COMPLETE: save the demo video as docs/demo.mp4 (the card above opens it on GitHub).
+     To play it directly inside this page instead, edit this README on github.com, drag the .mp4 into the editor
+     and keep the https://github.com/user-attachments/... link it generates on its own line. -->
+
 ## Screenshots
 
 <!-- TO COMPLETE: add screenshots of the interface in docs/ and display them here, e.g.
@@ -65,8 +77,6 @@ Recommendations are driven by three filters.
 <img src="docs/02-results.png" width="30%" alt="Recommendations">
 </div>
 -->
-
-A demo video of the interface was prepared to showcase the concept. <!-- TO COMPLETE: add the video link (YouTube, Drive) or a GIF in docs/ -->
 
 ## My role
 
